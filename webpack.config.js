@@ -1,3 +1,4 @@
+const path = require("path");
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
@@ -20,12 +21,22 @@ module.exports = {
         ],
       },
       {
-        test: /.css$/,
-        use: ['style-loader', {
-          loader: 'postcss-loader',
-
-        }]
-      }
+        test: /\.css$/,
+        use: ["style-loader", "postcss-loader"],
+      },
+      {
+        test: /\.svg$/,
+        use: [
+          {
+            loader: "@svgr/webpack",
+            options: {
+              icon: true,
+              dimensions: false,
+              svgo: true,
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -34,4 +45,9 @@ module.exports = {
       filename: "index.html",
     }),
   ],
+  resolve: {
+    alias: {
+      "~": path.resolve(__dirname, "src"),
+    },
+  },
 };
