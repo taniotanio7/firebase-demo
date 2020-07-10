@@ -1,4 +1,5 @@
 import * as firebase from "firebase/app";
+import "firebase/auth";
 
 const firebaseConfig = {
   apiKey: "AIzaSyB8Ed3c-gtNgqOKMJfEJ3YfgYwzm-7lPQY",
@@ -12,3 +13,13 @@ const firebaseConfig = {
 };
 
 firebase.initializeApp(firebaseConfig);
+
+export const uiConfig = {
+  signInSuccessUrl: "/",
+  signInFlow: "popup",
+  signInOptions: [
+    firebase.auth.EmailAuthProvider.PROVIDER_ID,
+    firebase.auth.GoogleAuthProvider.PROVIDER_ID,
+  ],
+  tosUrl: "/terms-of-service",
+};
