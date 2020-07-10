@@ -19,6 +19,13 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /.css$/,
+        use: ['style-loader', {
+          loader: 'postcss-loader',
+
+        }]
+      }
     ],
   },
   plugins: [
