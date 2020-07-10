@@ -1,9 +1,9 @@
-import 'react-hot-loader';
-import React from 'react';
+import "react-hot-loader";
+import React from "react";
 import ReactDOM from "react-dom";
-import './firebase';
+import "./firebase";
 
-import App from './App';
+import App from "./App";
 
-const wrapper = document.getElementById('app');
+const wrapper = document.getElementById("app");
 ReactDOM.render(<App />, wrapper);

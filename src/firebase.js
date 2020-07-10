@@ -8,7 +8,7 @@ const firebaseConfig = {
   storageBucket: "buddy-demo-todo.appspot.com",
   messagingSenderId: "175580667377",
   appId: "1:175580667377:web:a27920a275fbb0a0f57850",
-  measurementId: "G-V6G5YNGEPF"
+  measurementId: "G-V6G5YNGEPF",
 };
 
 firebase.initializeApp(firebaseConfig);

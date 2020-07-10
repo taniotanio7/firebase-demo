@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --open --mode development --hot",
-    "build": "webpack --mode production"
+    "build": "webpack --mode production",
+    "format": "prettier --write ."
   },
   "keywords": [
     "firebase",
@@ -23,6 +24,7 @@
     "babel-loader": "^8.1.0",
     "html-loader": "^1.1.0",
     "html-webpack-plugin": "^4.3.0",
+    "prettier": "2.0.5",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
