@@ -1,6 +1,6 @@
 {
   "projects": {
     "default": "buddy-demo-todo",
-    "staging": "buddy-demo-todo-stage"
+    "testing": "buddy-demo-todo-testing"
   }
 }
