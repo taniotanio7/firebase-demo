@@ -19,6 +19,7 @@ export async function addItem(item) {
     await itemRef.set({
       done: item.done,
       text: item.text,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
     });
   }
   // silently fail if user not logged in
@@ -36,6 +37,7 @@ export async function updateItem(item) {
     await ref.update({
       done: item.done,
       text: item.text,
+      date: firebase.firestore.FieldValue.serverTimestamp(),
     });
   }
 }
@@ -70,6 +72,7 @@ export async function syncWithRemote() {
         id: doc.id,
         text: data.text,
         done: data.done,
+        date: data.date.toDate(),
       });
     });
     const done = [];
@@ -77,6 +80,9 @@ export async function syncWithRemote() {
     items.forEach(item => {
       item.done ? done.push(item) : notDone.push(item);
     });
-    return [...notDone, ...done];
+    return [
+      ...notDone.sort((a, b) => b.date - a.date),
+      ...done.sort((a, b) => a.date - b.date),
+    ];
   }
 }
