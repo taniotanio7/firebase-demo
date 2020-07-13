@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AddIcon from "~/assets/icons/plus.svg";
+import { addItem } from "~/helpers/itemsHelper";
+import { nanoid } from "nanoid";
 
 const AddForm = ({ onAdd = () => {} }) => {
   const [value, setValue] = useState("");
@@ -37,7 +39,13 @@ const AddForm = ({ onAdd = () => {} }) => {
 
   function handleSubmit(e) {
     e.preventDefault();
-    onAdd(value);
+    const item = {
+      id: nanoid(),
+      text: value,
+      done: false,
+    };
+    onAdd(item);
+    console.log(addItem(item));
     setValue("");
   }
 };

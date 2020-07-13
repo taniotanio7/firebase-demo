@@ -6,7 +6,7 @@ import ListItem from "./components/ListItem";
 import AddForm from "./components/AddForm";
 import LoginButton from "~/components/LoginButton";
 import LoginScreen from "~/components/LoginScreen";
-import { nanoid } from "nanoid";
+import { removeItem, updateItem } from "~/helpers/itemsHelper";
 import "./styles/main.css";
 
 const App = () => {
@@ -45,14 +45,7 @@ const App = () => {
   );
 
   function addNewItem(item) {
-    setItems(currentItems => [
-      {
-        id: nanoid(),
-        text: item,
-        done: false,
-      },
-      ...currentItems,
-    ]);
+    setItems(currentItems => [item, ...currentItems]);
   }
 
   function changeItemStatus({ id, text }) {
@@ -67,11 +60,13 @@ const App = () => {
         // undone
         setItems([...undoneItems, thisItem, ...doneItems]);
       }
+      updateItem({ id, text, done: state });
     };
   }
 
-  function deleteItem({ id }) {
-    setItems(items => items.filter(item => item.id !== id));
+  function deleteItem(savedItem) {
+    setItems(items => items.filter(item => item.id !== savedItem.id));
+    removeItem(savedItem);
   }
 };
 
