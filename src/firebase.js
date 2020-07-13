@@ -12,7 +12,22 @@ const firebaseConfig = {
   measurementId: "G-V6G5YNGEPF",
 };
 
-firebase.initializeApp(firebaseConfig);
+const testFirebaseConfig = {
+  apiKey: "AIzaSyBG9qTppLObed94KUFHEZ9nH-38hv4Jtuc",
+  authDomain: "buddy-demo-todo-testing.firebaseapp.com",
+  databaseURL: "https://buddy-demo-todo-testing.firebaseio.com",
+  projectId: "buddy-demo-todo-testing",
+  storageBucket: "buddy-demo-todo-testing.appspot.com",
+  messagingSenderId: "634356635376",
+  appId: "1:634356635376:web:0cfe23444a54385a9a5435",
+  measurementId: "G-G8DCPFKPQY",
+};
+
+if (process.env.TESTING) {
+  firebase.initializeApp(testFirebaseConfig);
+} else {
+  firebase.initializeApp(firebaseConfig);
+}
 
 export const uiConfig = {
   signInSuccessUrl: "/",
