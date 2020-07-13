@@ -52,3 +52,31 @@ export async function removeItem(item) {
     await ref.delete();
   }
 }
+
+export async function syncWithRemote() {
+  const user = firebase.auth().currentUser;
+  if (user) {
+    const ref = firebase
+      .firestore()
+      .collection("todos")
+      .doc(user.uid)
+      .collection("items");
+
+    const items = [];
+    const snapshot = await ref.get();
+    snapshot.forEach(doc => {
+      const data = doc.data();
+      items.push({
+        id: doc.id,
+        text: data.text,
+        done: data.done,
+      });
+    });
+    const done = [];
+    const notDone = [];
+    items.forEach(item => {
+      item.done ? done.push(item) : notDone.push(item);
+    });
+    return [...notDone, ...done];
+  }
+}

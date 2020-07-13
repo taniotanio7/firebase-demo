@@ -8,6 +8,7 @@ import LoginButton from "~/components/LoginButton";
 import LoginScreen from "~/components/LoginScreen";
 import { removeItem, updateItem } from "~/helpers/itemsHelper";
 import "./styles/main.css";
+import FetchItemsButton from "~/components/FetchItemsButton";
 
 const App = () => {
   const [authOpen, setAuthOpen] = useState(false);
@@ -20,7 +21,10 @@ const App = () => {
   return (
     <main className="w-full h-full flex justify-center">
       <div className="flex flex-col items-center w-full container">
-        <LoginButton onOpen={() => setAuthOpen(true)} />
+        <div className="flex self-end mt-2 mr-3">
+          <LoginButton onOpen={() => setAuthOpen(true)} />
+          <FetchItemsButton onClick={newItems => setItems(newItems)} />
+        </div>
         <div className="flex items-center mt-8">
           <ClipboardIcon className="mr-3 icon-big" />
           <h1 className="text-4xl font-bold">TO-DO App</h1>
